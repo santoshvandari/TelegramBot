@@ -12,9 +12,6 @@ async def OpeningIpo(name,totalunit):
     # Send a text message
     await bot.send_message(chat_id=channel_id, text=message)
 
-# Run the coroutine asynchronously
-# asyncio.run(send_message())
-
 
 # For Closing IPO
 async def ClosingIpo(name,totalunit):
