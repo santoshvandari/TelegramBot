@@ -1,8 +1,8 @@
-name: Run Python script daily (Nepal Time)
+name: RunPythonScript
 
 on:
   schedule:
-    - cron: '0 15:30 * * *' # Runs at 11:00 AM Nepal Standard Time (UTC +5:45)
+    - cron: '0 6 * * *' # Runs at 11:00 AM Nepal Standard Time (UTC +5:45)
 
 jobs:
   run-script:

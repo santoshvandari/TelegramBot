@@ -40,3 +40,8 @@ for i in range(1,5):
         asyncio.run(SendMessage(f'Hello Universe! {i}'))
     except Exception as e:
         print(f"Error sending message: {e}")
+
+
+
+# Writing the Data into Database System 
+# INSERT INTO ipodetails VALUES('Testing 4',10000,'2000-01-01','2001-02-02');
