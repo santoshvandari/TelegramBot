@@ -28,7 +28,7 @@ async def OpeningIpo(companyname,symbol, totalunit,issuetype,issuemanager,openin
 
 # For Closing IPO
 async def ClosingIpo(companyname,symbol, totalunit,issuetype,issuemanager,openingdate,closingdate):
-    message = f"Today is the Last Day to apply IPO of {companyname}.Please Don't miss the chance to apply.\n\nIPO Information:\nCompany Name: {companyname}\nSymbol: {symbol}\nTotal Unit: {totalunit}\nIssue Type: {issuetype}\nIssue Manager: {issuemanager}\nOpening Date: {openingdate}\nClosing Date: {closingdate}"
+    message = f"Today is the Last Day to apply IPO of {companyname}. Please Don't miss the chance to apply.\n\nIPO Information:\nCompany Name: {companyname}\nSymbol: {symbol}\nTotal Unit: {totalunit}\nIssue Type: {issuetype}\nIssue Manager: {issuemanager}\nOpening Date: {openingdate}\nClosing Date: {closingdate}"
     # Send a text message
     await send_message(message)
 
@@ -49,7 +49,7 @@ if result:
         # print(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
         loop.run_until_complete(OpeningIpo(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
         print("opening Message Sent")
-        break
+        # break
 
 
 # # Reading the Data from the Database for closing date
@@ -68,6 +68,6 @@ if result:
         # print(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
         loop.run_until_complete(ClosingIpo(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
         print("Closing Message Sent")
-        break
+        # break
 
 # connection.commit()
