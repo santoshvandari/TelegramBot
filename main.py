@@ -45,9 +45,10 @@ loop = asyncio.get_event_loop()
 if result:
     print("For Opening IPO")
     for row in result:
-        print(f'{row[0]}\t {row[1]}\t {row[2]}\t {row[3]}\t {row[4]}\t {row[5]}\t {row[6]}\n')
+        # print(f'{row[0]}\t {row[1]}\t {row[2]}\t {row[3]}\t {row[4]}\t {row[5]}\t {row[6]}\n')
         # print(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
         loop.run_until_complete(OpeningIpo(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+        print("opening Message Sent")
         break
 
 
@@ -60,11 +61,13 @@ if result:
 # result = cursor.fetchall()
 # # print(result)
 
-# if result:
-#     print("For Opening IPO")
-#     for row in result:
-#         print(f'{row[0]}\t {row[1]}\t {row[2]}\t {row[3]}\t {row[4]}\t {row[5]}\t {row[6]}\n')
+if result:
+    print("For Opening IPO")
+    for row in result:
+        # print(f'{row[0]}\t {row[1]}\t {row[2]}\t {row[3]}\t {row[4]}\t {row[5]}\t {row[6]}\n')
         # print(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
-        # loop.run_until_complete(ClosingIpo(row[0], row[1]))
+        loop.run_until_complete(ClosingIpo(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+        print("Closing Message Sent")
+        break
 
 # connection.commit()
