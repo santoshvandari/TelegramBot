@@ -1,0 +1,2 @@
+bot = telegram.Bot(token='6959113117:AAFPVCjeu_ZN4hwwIDHW09NpqNyEVCSnMG4')
+channel_id = '-1002109629328'
