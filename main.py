@@ -32,8 +32,7 @@ async def ClosingIpo(companyname,symbol, totalunit,issuetype,issuemanager,openin
 
 # Reading the Data from the Database for opening date
 date = datetime.datetime.now().date()
-# query = f"select * from ipoinfodetails where openingdate='{date}';"
-query = f"select * from ipoinfodetails;"
+query = f"select * from ipoinfodetails where openingdate='{date}';"
 cursor.execute(query)
 result = cursor.fetchall()
 loop = asyncio.get_event_loop()
@@ -45,7 +44,6 @@ if result:
 
 # # Reading the Data from the Database for closing date
 query = f"select * from ipoinfodetails where closingdate='{date}';"
-query = f"select * from ipoinfodetails;"
 cursor.execute(query)
 result = cursor.fetchall()
 if result:
