@@ -4,7 +4,8 @@ bot = telegram.Bot(token='6959113117:AAFPVCjeu_ZN4hwwIDHW09NpqNyEVCSnMG4')
 channel_id = '-1002109629328'
 
 # Connecting to the Database
-connectionString = "postgresql://postgres:rnR0uiDqNVWiBL1C@db.xirdbhvrdyarslorlufu.supabase.co:5432/postgres"
+connectionString = "postgres://postgres.xirdbhvrdyarslorlufu:9XEq4EPhvJzDXfA7@aws-0-ap-south-1.pooler.supabase.com:5432/postgres"
+# pwd = 9XEq4EPhvJzDXfA7
 try:
     connection = psycopg2.connect(connectionString)
     cursor = connection.cursor()
@@ -31,7 +32,8 @@ async def ClosingIpo(companyname,symbol, totalunit,issuetype,issuemanager,openin
 
 # Reading the Data from the Database for opening date
 date = datetime.datetime.now().date()
-query = f"select * from ipoinfodetails where openingdate='{date}';"
+# query = f"select * from ipoinfodetails where openingdate='{date}';"
+query = f"select * from ipoinfodetails;"
 cursor.execute(query)
 result = cursor.fetchall()
 loop = asyncio.get_event_loop()
@@ -43,6 +45,7 @@ if result:
 
 # # Reading the Data from the Database for closing date
 query = f"select * from ipoinfodetails where closingdate='{date}';"
+query = f"select * from ipoinfodetails;"
 cursor.execute(query)
 result = cursor.fetchall()
 if result:
