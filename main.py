@@ -19,37 +19,39 @@ async def send_message(message):
     await bot.send_message(chat_id=channel_id, text=message)
 
 # For Opening IPO
-async def OpeningIpo(companyname,symbol, totalunit,issuetype,issuemanager,openingdate,closingdate):
-    message = f"New IPO of {companyname} is opening for {issuetype} from Today with total unit {totalunit}. Please Don't miss the chance to apply.\n\nIPO Information:\nCompany Name: {companyname}\nSymbol: {symbol}\nTotal Unit: {totalunit}\nIssue Type: {issuetype}\nIssue Manager: {issuemanager}\nOpening Date: {openingdate}\nClosing Date: {closingdate}"
+async def OpeningIpo(companyname,symbol,issuetype,issuefor, totalunit,issuemanager,openingdate,closingdate):
+    message = f"The New {issuetype} of {companyname} is opening for {issuefor} from Today with total unit {totalunit}. Please Don't miss the chance to apply.\n\n{issuetype} Information:\nCompany Name: {companyname}\nSymbol: {symbol}\nIssue Type: {issuetype}\nIssue For:{issuefor}\nTotal Unit: {totalunit}\nIssue Manager: {issuemanager}\nOpening Date: {openingdate}\nClosing Date: {closingdate}"
     # Send a text message
     await send_message(message)
 
 # For Closing IPO
-async def ClosingIpo(companyname,symbol, totalunit,issuetype,issuemanager,openingdate,closingdate):
-    message = f"Today is the Last Day to apply IPO of {companyname}. Please Don't miss the chance to apply.\n\nIPO Information:\nCompany Name: {companyname}\nSymbol: {symbol}\nTotal Unit: {totalunit}\nIssue Type: {issuetype}\nIssue Manager: {issuemanager}\nOpening Date: {openingdate}\nClosing Date: {closingdate}"
+async def ClosingIpo(companyname,symbol,issuetype,issuefor, totalunit,issuemanager,openingdate,closingdate):
+    message = f"Today is the Last Day to apply {issuetype} of {companyname}. Please Don't miss the chance to apply.\n\n{issuetype} Information:\nCompany Name: {companyname}\nSymbol: {symbol}\nIssue Type: {issuetype}\nIssue For:{issuefor}\nTotal Unit: {totalunit}\nIssue Manager: {issuemanager}\nOpening Date: {openingdate}\nClosing Date: {closingdate}"
     # Send a text message
     await send_message(message)
 
 # Reading the Data from the Database for opening date
 date = datetime.datetime.now().date()
-query = f"select * from ipoinfodetails where openingdate='{date}';"
+query = f"select * from ipodetails where openingdate='{date}';"
 cursor.execute(query)
 result = cursor.fetchall()
 loop = asyncio.get_event_loop()
 if result:
     print("For Opening IPO")
     for row in result:
-        loop.run_until_complete(OpeningIpo(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+        # print(row)
+        loop.run_until_complete(OpeningIpo(row[0], row[1], row[2], row[3], row[4], row[5], row[6],row[7]))
         print("opening Message Sent")
 
 # # Reading the Data from the Database for closing date
-query = f"select * from ipoinfodetails where closingdate='{date}';"
+query = f"select * from ipodetails where closingdate='{date}';"
 cursor.execute(query)
 result = cursor.fetchall()
 if result:
     print("For Closing IPO")
     for row in result:
-        loop.run_until_complete(ClosingIpo(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+        # print(row)
+        loop.run_until_complete(ClosingIpo(row[0], row[1], row[2], row[3], row[4], row[5], row[6],row[7]))
         print("Closing Message Sent")
 
 connection.commit()
