@@ -30,28 +30,34 @@ async def ClosingIpo(companyname,symbol,issuetype,issuefor, totalunit,issuemanag
     # Send a text message
     await send_message(message)
 
-# Reading the Data from the Database for opening date
-date = datetime.datetime.now().date()
-query = f"select * from ipodetails where openingdate='{date}';"
-cursor.execute(query)
-result = cursor.fetchall()
-loop = asyncio.get_event_loop()
-if result:
-    print("For Opening IPO")
-    for row in result:
-        # print(row)
-        loop.run_until_complete(OpeningIpo(row[0], row[1], row[2], row[3], row[4], row[5], row[6],row[7]))
-        print("opening Message Sent")
+if __name__ == "__main__":
+    # Reading the Data from the Database for opening date
+    date = datetime.datetime.now().date()
+    if date.strftime("%A") == "Saturday":
+        print(date.strftime("%A"))
+        print("Today is Saturday")
+        exit(0)
+    else:
+        query = f"select * from ipodetails where openingdate='{date}';"
+        cursor.execute(query)
+        result = cursor.fetchall()
+        loop = asyncio.get_event_loop()
+        if result:
+            print("For Opening IPO")
+            for row in result:
+                # print(row)
+                loop.run_until_complete(OpeningIpo(row[0], row[1], row[2], row[3], row[4], row[5], row[6],row[7]))
+                print("opening Message Sent")
 
-# # Reading the Data from the Database for closing date
-query = f"select * from ipodetails where closingdate='{date}';"
-cursor.execute(query)
-result = cursor.fetchall()
-if result:
-    print("For Closing IPO")
-    for row in result:
-        # print(row)
-        loop.run_until_complete(ClosingIpo(row[0], row[1], row[2], row[3], row[4], row[5], row[6],row[7]))
-        print("Closing Message Sent")
-
-connection.commit()
+        # # Reading the Data from the Database for closing date
+        query = f"select * from ipodetails where closingdate='{date}';"
+        cursor.execute(query)
+        result = cursor.fetchall()
+        if result:
+            print("For Closing IPO")
+            for row in result:
+                # print(row)
+                loop.run_until_complete(ClosingIpo(row[0], row[1], row[2], row[3], row[4], row[5], row[6],row[7]))
+                print("Closing Message Sent")
+    connection.commit()
+    connection.close()
