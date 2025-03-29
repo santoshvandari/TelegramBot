@@ -1,13 +1,19 @@
-import psycopg2,datetime,asyncio,telegram
+import psycopg2,datetime,asyncio,telegram,os
+from dotenv import load_dotenv
 
-bot = telegram.Bot(token='6959113117:AAFPVCjeu_ZN4hwwIDHW09NpqNyEVCSnMG4')
-channel_id = '-1002109629328'
+load_dotenv()
 
-# Connecting to the Database
-connectionString = "postgres://postgres.xirdbhvrdyarslorlufu:9XEq4EPhvJzDXfA7@aws-0-ap-south-1.pooler.supabase.com:5432/postgres"
-# pwd = 9XEq4EPhvJzDXfA7
+token = os.getenv('TELEGRAM_BOT_TOKEN')
+channel_id = os.getenv('CHANNEL_ID')
+DB_URL = os.getenv('DATABASE_URL')
+
+print(token, channel_id, DB_URL)
+bot = telegram.Bot(token=token)
+
+exit(0)
+
 try:
-    connection = psycopg2.connect(connectionString)
+    connection = psycopg2.connect(DB_URL)
     cursor = connection.cursor()
     print("Connected to PostgreSQL database successfully!")
 except Exception as e:
